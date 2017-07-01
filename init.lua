@@ -1,11 +1,9 @@
-dofile(minetest.get_modpath("macusa").."/stuff.lua")
-dofile(minetest.get_modpath("macusa").."/spells.lua")
-dofile(minetest.get_modpath("macusa").."/books.lua")
-dofile(minetest.get_modpath("macusa").."/cauldron.lua")
-dofile(minetest.get_modpath("macusa").."/table.lua")
-dofile(minetest.get_modpath("macusa").."/potion.lua")
+dofile(minetest.get_modpath("harrypotterwands").."/stuff.lua")
+dofile(minetest.get_modpath("harrypotterwands").."/spells.lua")
+dofile(minetest.get_modpath("harrypotterwands").."/books.lua")
+dofile(minetest.get_modpath("harrypotterwands").."/table.lua")
 
-minetest.register_node("macusa:protego", {
+minetest.register_node("harrypotterwands:protego", {
 	description = "Protego",
 	drawtype = "mesh",
 	mesh = "protego.obj",
@@ -21,7 +19,7 @@ minetest.register_node("macusa:protego", {
 })
 
 
-minetest.register_node("macusa:light", {
+minetest.register_node("harrypotterwands:light", {
 	drawtype = "plantlike",
 	description = "light",
 	tiles = {"star.png"},
@@ -33,21 +31,21 @@ minetest.register_node("macusa:light", {
 })
 
 minetest.register_craft({
-	output = "macusa:table",
+	output = "harrypotterwands:table",
 	recipe = {
-		{"default:bookshelf", "default:book", "default:bookshelf"},
-		{"default:diamond", "stairs:slab_wood", "default:diamond"},
-		{"default:wood", "", "default:wood"}
+		{"default:bookshelf", "default:diamond", "default:bookshelf"},
+		{"default:wood", "default:wood", "default:wood"},
+		{"", "default:wood", ""}
 	}
 })
 
-minetest.register_craftitem("macusa:basic_book", {
+minetest.register_craftitem("harrypotterwands:basic_book", {
 	description = "Blank Spell Book",
 	inventory_image = "default_book_written.png^[colorize:#3A1355:120",
 })
 
 minetest.register_craft({
-	output = "macusa:phoenix_feather",
+	output = "harrypotterwands:phoenix_feather",
 	recipe = {
 		{"default:obsidian", "default:mese_crystal", "default:obsidian"},
 		{"default:mese_crystal", "default:aspen_leaves", "default:mese_crystal"},
@@ -56,16 +54,22 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = "macusa:basic_book",
+	output = "harrypotterwands:basic_book",
 	recipe = {
-		{"default:diamond", "default:paper", "macusa:phoenix_feather"},
+		{"default:diamond", "default:paper", "harrypotterwands:phoenix_feather"},
 		{"default:diamond", "default:paper", ""},
 		{"default:diamond", "default:paper", ""}
 	}
 })
 
+minetest.register_craftitem("harrypotterwands:phoenix_feather", {
+	description = "Feather of Phoenix",
+	inventory_image = "feather.png",
+	stack_max = 1,
+})
+
 minetest.register_abm{
-	nodenames = {"macusa:light"},
+	nodenames = {"harrypotterwands:light"},
 	neighbors = {"air"},
 	interval = 5,
 	chance = 10,
@@ -76,7 +80,7 @@ minetest.register_abm{
 }
 
 minetest.register_abm{
-	nodenames = {"macusa:protego"},
+	nodenames = {"harrypotterwands:protego"},
 	neighbors = {"air"},
 	interval = 2,
 	chance = 1,
